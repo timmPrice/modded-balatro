@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+# check if balatro is installed with proton
+file = $HOME/.steam/steam/steamapps/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/
+lovely_file = $HOME/.steam/steam/steamapps/common/Balatro
+
+
+if [ ! -d $file || ! -d $lovely_file ]; then
+    echo "balatro is not installed properly"
+    exit
+fi
+
+mkdir $file/Mods
+mkdir $file/config
+
+# installing lovely *** THIS NEEDS TO BE THE PACKAGE NOT THE REPO! ***
+
+git clone https://https://github.com/ethangreen-dev/lovely-injector.git $HOME/Downloads/lovely.zip
+unzip $HOME/Downloads/lovely.zip
+cp -r $HOME/Downloads/version.dll lovely_file/
+
+
+# installing steammods
+git clone https://github.com/Steamodded/smods?tab=readme-ov-file $file/Mods/smod
+
+# installing handy
+git clone https://github.com/SleepyG11/HandyBalatro.git $file/Mods/handy
+cp -r Handy.jkr $file/config/
